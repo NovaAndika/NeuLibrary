@@ -19,3 +19,6 @@ Route::get('registration' , [UserController::class, 'regis']);
 Route::get('registration' , [UserController::class, 'registration'])->name('registration');
 
 Route::get('/' , [HomeController::class, 'index'])->middleware('auth');
+Route::get('home', function () {
+    return "oke";
+});
