@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('registration' , [UserController::class, 'regis']);
-Route::get('registration' , [UserController::class, 'registration'])->name('registration');
+Route::get('login' , [UserController::class, 'index']);
+Route::get('login' , [UserController::class, 'login'])->name('login');
 
 Route::get('/' , [HomeController::class, 'index'])->middleware('auth');

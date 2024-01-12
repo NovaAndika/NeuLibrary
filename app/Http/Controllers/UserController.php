@@ -3,17 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function regis() {
-        return view('registration');
+    public function index(){
+        if(Auth::check()){
+            return view('/');
+        }
+
+        return redirect('/login');
     }
 
-    public function registration(Request $request) {
+    public function login(Request $request){
         $this->validate($request, [
-            'nama' => 'require',
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
+
+        $user = [
+            'email' => $request->input('emial'),
+            'password' => $request->input('password')
+        ];
+
+        if(Auth::attempt($user)){
+            return view('/');
+        }
+
+        return redirect('login');
+
     }
 }

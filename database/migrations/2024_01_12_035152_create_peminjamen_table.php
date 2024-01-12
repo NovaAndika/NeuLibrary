@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(book::class);
+            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(book::class)->constrained();
             $table->date('start_at');
             $table->date('end_at');
             $table->boolean('dipinjam')->default(false);
