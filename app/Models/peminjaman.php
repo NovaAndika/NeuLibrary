@@ -14,4 +14,12 @@ class peminjaman extends Model
         'end_at',
         'dipinjam'
     ];
+
+    public function book(){
+        return $this->belongsTo(Book::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
