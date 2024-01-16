@@ -12,7 +12,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::latest()->paginate(20);
+        return view('book.index');
     }
 
     /**

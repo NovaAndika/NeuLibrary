@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('gambar');
             $table->string('sinopsis');
             $table->string('pengarang');
             $table->string('penerbit');
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->integer('dipinjam');
             $table->integer('halaman');
-            $table->timestamp('deleted_at');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

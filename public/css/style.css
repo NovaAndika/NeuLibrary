@@ -1,0 +1,47 @@
+.w-full {
+    width: 100vw;
+}
+
+.h-full {
+    height: 100dvh;
+}
+
+.h-10dvh {
+    height: 10dvh;
+}
+
+.font-caveat {
+    font-family: 'Caveat', 'Times New Roman', Times, serif;
+}
+
+.z-0{
+    z-index: 0;
+}
+
+.z-1 {
+    z-index: 10;
+}
+
+.nav-item a {
+    color: white;
+}
+
+.slide-in {
+    animation: slide-in 300ms ease-in forwards;
+    top: 11%;
+    right: -15%;
+    opacity: 0;
+}
+
+@keyframes slide-in {
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        right: 1%;
+        opacity: 1;
+    }
+}
+
+/* Sidebar */

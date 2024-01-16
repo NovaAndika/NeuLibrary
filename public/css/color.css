@@ -1,0 +1,30 @@
+.bg-cTua {
+    background-color: #6B240C;
+}
+
+.bg-cPucat {
+    background-color: #F5CCA0;
+}
+
+.bg-cMedium {
+    background-color: #994D1C;
+}
+
+.btn-cMedium {
+    background-color: #994D1C;
+    color: white;
+}
+
+.btn-cMedium:hover {
+    background-color: #602d0b;
+    color: white;
+}
+
+.btn-cMedium:active{
+    background-color: #602d0b !important;
+    color: white !important;
+}
+
+.btn-tr {
+    background-color: #5615159e;
+}
