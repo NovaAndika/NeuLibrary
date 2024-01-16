@@ -21,7 +21,8 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->integer('dipinjam');
             $table->integer('halaman');
-            $table->timestamp('deleted_at');
+            $table->string('image')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
