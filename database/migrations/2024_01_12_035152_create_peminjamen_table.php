@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(book::class)->constrained();
             $table->date('start_at');
             $table->date('end_at');
-            $table->boolean('dipinjam')->default(false);
+            $table->enum('dipinjam',['keranjang', 'dipinjam', 'dikembalikan'])->default('keranjang');
             $table->timestamps();
         });
     }

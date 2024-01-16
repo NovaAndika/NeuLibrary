@@ -8,11 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
+// use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject as ContractsJWTSubject;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
 
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -51,12 +51,12 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'hashed',
     ];
 
-    public function setPasswordAttribute($value) {
-        if(!empty($value)){
-            $this->attributes['password'] = Hash::make($value);
-        }
-    }
-    
+    // public function setPasswordAttribute($value) {
+    //     if(!empty($value)){
+    //         $this->attributes['password'] = Hash::make($value);
+    //     }
+    // }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();

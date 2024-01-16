@@ -27,20 +27,21 @@ class UserController extends Controller
                 'password' => 'required'
             ]);
 
-            $user = [
-                'email' => $request->input('email'),
-                'password' => $request->input('password')
-            ];
+            // dd($request->all());
 
-            if (Auth::attempt($user)) {
+            if (Auth::attempt([
+                    'email' => $request->input('email'),
+                    'password' => $request->input('password')
+                ])) {
+                    // dd("Logged in!");
                 return redirect()->to('/');
             }
-            // dd($request->all());
 
             throw new Exception('Invalid credentials');
         } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->validator->errors());
         } catch (Exception $e) {
+            // dd($request->all(),$e -> getMessage());
             return redirect()->back()->withErrors(['message' => $e->getMessage()]);
         }
     }

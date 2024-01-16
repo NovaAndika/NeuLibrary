@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
     public function index() {
+        dd("Home page!");
         return view('home');
     }
 }
