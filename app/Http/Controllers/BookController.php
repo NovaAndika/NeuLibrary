@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -53,7 +54,7 @@ class BookController extends Controller
             $img = imagecreatefrompng($image->path());
         }
 
-        if ($img){
+        if ($img) {
             imagejpeg($img, $path, 60);
             imagedestroy($img);
         }
@@ -73,34 +74,72 @@ class BookController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(book $book)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(book $book)
+    public function edit(string $id)
     {
-        //
+        $book = book::findOrFail($id);
+        return view('book.edit', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, book $book)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'image' => 'image|mimes:jpg,jpeg,png',
+            'title' => 'required',
+            'sinopsis' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'terbit' => 'required|date',
+            'jumlah' => 'required',
+            'halaman' => 'required',
+        ]);
+
+        $book = book::findOrFail($id);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $title = $request->title;
+            $imageName =  str_replace(" ", "_", $title . $id) . '.jpg';
+            $image->storeAs('public/image', $imageName);
+
+            Storage::delete(['public/image', $book->image]);
+            $book->update([
+                'image' => $imageName,
+                'title' => $request->title,
+                'sinopsis' => $request->sinopsis,
+                'pengarang' => $request->pengarang,
+                'penerbit' => $request->penerbit,
+                'terbit' => $request->terbit,
+                'jumlah' => $request->jumlah,
+                'halaman' => $request->halaman,
+            ]);
+        } else{
+            $book->update([
+                'title' => $request->title,
+                'sinopsis' => $request->sinopsis,
+                'pengarang' => $request->pengarang,
+                'penerbit' => $request->penerbit,
+                'terbit' => $request->terbit,
+                'jumlah' => $request->jumlah,
+                'halaman' => $request->halaman,
+            ]);
+        }
+
+        return redirect()->to('book');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(book $book)
+    public function destroy( $id)
     {
-        //
+        $book = book::findOrFail($id);
+        $book->delete();
+
+        return redirect()->to('book');
     }
 }
