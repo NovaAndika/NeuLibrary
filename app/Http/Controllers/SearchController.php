@@ -32,6 +32,12 @@ class SearchController extends Controller
         return response()->json($books->get());
     }
 
+    public function getImage($id){
+        //get id buku
+        //dari id buku , fid, lalu ambil path
+        //dicari di storage berdasarkan path
+        //tampilkan di response berupa file
+    }
     // public function show(Request $request, int $id )
     // {
     //     $book = Book::findOrFail($id);
