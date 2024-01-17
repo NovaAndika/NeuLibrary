@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('image')->nullable();
-            $table->string('sinopsis');
+            $table->text('sinopsis');
             $table->string('pengarang');
             $table->string('penerbit');
             $table->date('terbit');
             $table->integer('jumlah');
-            $table->integer('dipinjam');
+            $table->integer('dipinjam')->default(0);
             $table->integer('halaman');
-            $table->timestamp('deleted_at');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

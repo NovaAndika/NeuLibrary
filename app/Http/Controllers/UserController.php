@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
+        if (Auth::guard('web')->check()) {
             return redirect()->to('/');
         }
 
@@ -29,7 +29,7 @@ class UserController extends Controller
 
             // dd($request->all());
 
-            if (Auth::attempt([
+            if (Auth::guard('web')->attempt([
                     'email' => $request->input('email'),
                     'password' => $request->input('password')
                 ])) {
