@@ -2,6 +2,10 @@
     width: 100vw;
 }
 
+.w-75{
+    width: 75vw !important;
+}
+
 .h-full {
     height: 100dvh;
 }
@@ -43,5 +47,3 @@
         opacity: 1;
     }
 }
-
-/* Sidebar */
