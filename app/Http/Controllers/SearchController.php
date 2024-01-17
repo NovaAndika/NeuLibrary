@@ -14,11 +14,22 @@ class SearchController extends Controller
         // Filter berdasarkan judul
         if ($request->has('title')) {
             $books->where('title', 'like', '%' . $request->input('title') . '%');
-        }
+        } 
+        // else {
+        //     abort(400, 'Parameter title  tidak valid');
+        // }  
+        // $books = $books->first();
 
-        // Tampilkan hasil pencarian
+        // // Tampilkan hasil pencarian
+        // if($books === null){
+        //     return response()->json([
+        //         'message' => 'Data tidak tersedia'
+        //     ]);
+        // } else{
+            
+        // }
+        
         return response()->json($books->get());
-
     }
 
     // public function show(Request $request, int $id )

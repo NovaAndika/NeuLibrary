@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PinjamController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,4 +33,21 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
 });
-Route::get('/book', [SearchController::class, 'index']);
+Route::get('/search', [SearchController::class, 'index']);
+Route::post('/borrow-book', [PinjamController::class, 'borrowBook']);
+Route::post('/return-book', [PinjamController::class, 'returnBook']);
+Route::get('/cart-status', [PinjamController::class, 'getCartStatus']);
+Route::post('/add-to-cart', [BukuController::class, 'addToCart']);
+
+// Route::post('/pinjam-buku', [SaleController::class, 'pinjamBuku']);
+// Route::put('/kembalikan-buku/{id}', [SaleController::class, 'kembalikanBuku']);
+
+// Route::get('/buku', [SaleController::class, 'index']);
+// Route::get('/buku/{id}', [SaleController::class, 'show']);
+// Route::post('/sales', [SaleController::class, ' updatePeminjaman']);
+
+
+// Route::group(['middleware' => 'guest'], function () {
+//     Route::resource('sale', SaleController::class);
+//     Route::get('/sale', SaleController::class);
+// });
