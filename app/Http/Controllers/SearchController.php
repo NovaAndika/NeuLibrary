@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 // use Intervention\Image\ImageManager;
 use App\Models\book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SearchController extends Controller
 {
@@ -32,21 +33,17 @@ class SearchController extends Controller
         return response()->json($books->get());
     }
 
-    public function getImage($id){
+    public function getImage(Request $request,$id){
         //get id buku
-        //dari id buku , fid, lalu ambil path
+        //dari id buku , find, lalu ambil path
         //dicari di storage berdasarkan path
         //tampilkan di response berupa file
+        $id_buku = $request->get('id');
+        $buku = book::find($id_buku);
+        $path = public_path('storage/' . $buku->image);
+        $file = Storage::disk('public')->get($path);
+        return response()->file($file);
+
     }
-    // public function show(Request $request, int $id )
-    // {
-    //     $book = Book::findOrFail($id);
-    //     $image = $request->file('image');
-       
-    //     $imageManager = new ImageManager($image->getRealPath());
-    //     $compressedImage = $imageManager->resize(200, 200)->encode('jpg', 80);
-    //     $book->image = $compressedImage;
-    //     $book->save();
-    //     return response()->json($book);
-    // }
+
 }

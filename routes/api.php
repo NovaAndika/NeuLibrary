@@ -39,14 +39,18 @@ Route::post('/return-book', [PinjamController::class, 'returnBook']);
 Route::get('/cart-status', [PinjamController::class, 'getCartStatus']);
 Route::post('/add-to-cart', [BukuController::class, 'addToCart']);
 
+Route::group(['prefix' => 'kuro'], function () {
+    Route::get('/detil', [PinjamController::class, 'index']);
+    Route::post('/pinjam', [PinjamController::class, 'store']);
+    Route::put('/peminjaman/{id}', [PinjamController::class, 'update']);
+    Route::delete('/peminjaman/{id}', [PinjamController::class, 'destroy']);
+});
+
 // Route::post('/pinjam-buku', [SaleController::class, 'pinjamBuku']);
 // Route::put('/kembalikan-buku/{id}', [SaleController::class, 'kembalikanBuku']);
-
 // Route::get('/buku', [SaleController::class, 'index']);
 // Route::get('/buku/{id}', [SaleController::class, 'show']);
 // Route::post('/sales', [SaleController::class, ' updatePeminjaman']);
-
-
 // Route::group(['middleware' => 'guest'], function () {
 //     Route::resource('sale', SaleController::class);
 //     Route::get('/sale', SaleController::class);
