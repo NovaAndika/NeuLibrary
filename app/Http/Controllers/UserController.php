@@ -30,19 +30,19 @@ class UserController extends Controller
             // dd($request->all());
 
             if (Auth::guard('web')->attempt([
-                    'email' => $request->input('email'),
-                    'password' => $request->input('password')
-                ])) {
-                    // dd("Logged in!");
+                'email' => $request->input('email'),
+                'password' => $request->input('password')
+            ])) {
+                // dd("Logged in!");
                 return redirect()->to('/');
             }
 
             throw new Exception('Invalid credentials');
         } catch (ValidationException $e) {
-            return redirect()->back()->withErrors($e->validator->errors());
+            return back()->withErrors($e->validator->errors());
         } catch (Exception $e) {
             // dd($request->all(),$e -> getMessage());
-            return redirect()->back()->withErrors(['message' => $e->getMessage()]);
+            return back()->withErrors(['message' => $e->getMessage()]);
         }
     }
 }

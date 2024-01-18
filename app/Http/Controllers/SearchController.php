@@ -15,10 +15,10 @@ class SearchController extends Controller
         // Filter berdasarkan judul
         if ($request->has('title')) {
             $books->where('title', 'like', '%' . $request->input('title') . '%');
-        } 
+        }
         // else {
         //     abort(400, 'Parameter title  tidak valid');
-        // }  
+        // }
         // $books = $books->first();
 
         // // Tampilkan hasil pencarian
@@ -27,23 +27,9 @@ class SearchController extends Controller
         //         'message' => 'Data tidak tersedia'
         //     ]);
         // } else{
-            
+
         // }
-        
+
         return response()->json($books->get());
     }
-
-    public function getImage(Request $request,$id){
-        //get id buku
-        //dari id buku , find, lalu ambil path
-        //dicari di storage berdasarkan path
-        //tampilkan di response berupa file
-        $id_buku = $request->get('id');
-        $buku = book::find($id_buku);
-        $path = public_path('storage/' . $buku->image);
-        $file = Storage::disk('public')->get($path);
-        return response()->file($file);
-
-    }
-
 }
