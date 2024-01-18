@@ -20,7 +20,7 @@
         <p class="text-bold text-white fs-2 m-0 font-caveat">NeoLibrary</p>
     </header>
 
-    <main class="overflow-scroll">
+    <main>
         @if ($errors->any())
             <div class="alert alert-danger position-absolute m-0 slide-in z-3">
                 <ul class="m-0">

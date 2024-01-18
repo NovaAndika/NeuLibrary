@@ -14,10 +14,10 @@ class SearchController extends Controller
         // Filter berdasarkan judul
         if ($request->has('title')) {
             $books->where('title', 'like', '%' . $request->input('title') . '%');
-        } 
+        }
         // else {
         //     abort(400, 'Parameter title  tidak valid');
-        // }  
+        // }
         // $books = $books->first();
 
         // // Tampilkan hasil pencarian
@@ -26,9 +26,9 @@ class SearchController extends Controller
         //         'message' => 'Data tidak tersedia'
         //     ]);
         // } else{
-            
+
         // }
-        
+
         return response()->json($books->get());
     }
 
@@ -36,7 +36,7 @@ class SearchController extends Controller
     // {
     //     $book = Book::findOrFail($id);
     //     $image = $request->file('image');
-       
+
     //     $imageManager = new ImageManager($image->getRealPath());
     //     $compressedImage = $imageManager->resize(200, 200)->encode('jpg', 80);
     //     $book->image = $compressedImage;

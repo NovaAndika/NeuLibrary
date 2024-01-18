@@ -20,10 +20,10 @@ class UserSeeder extends Seeder
         // for($i =1;$i<=5;$i++){
             User::create([
                 'name' => 'Muhammad Kusuma',
-                'email' => 'mokusuma06@gmail.com',
-                'password' => bcrypt('123') ,
+                'email' => 'qqq@q.qq',
+                'password' => bcrypt('1qazxc') ,
                 'no_telp' => '08121212121212',
-                'role' => 'admin'
+                'role' => 'user'
             ]);
         // }
     }

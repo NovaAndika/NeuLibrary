@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login' , [UserController::class, 'index'])->name('login');
-Route::post('login' , [UserController::class, 'login']);
+Route::get('/login' , [UserController::class, 'index']);
+Route::post('login' , [UserController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('/book', BookController::class);
 });
